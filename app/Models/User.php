@@ -11,15 +11,54 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name',
+        'email',
+        'password',
+        'role',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
-    // Helper untuk cek role di Controller/Blade
-    public function isAdmin() { return $this->role === 'admin'; }
-    public function isPetugas() { return $this->role === 'petugas'; }
-    public function isSiswa() { return $this->role === 'siswa'; }
+    /* =========================
+       RELATIONSHIPS
+    ========================= */
+
+    /**
+     * Relasi: user (siswa) sebagai peminjam
+     */
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    /**
+     * Relasi: user (petugas/admin) sebagai penyetuju
+     */
+    public function peminjamanDiproses()
+    {
+        return $this->hasMany(Peminjaman::class, 'petugas_id');
+    }
+
+    /* =========================
+       ROLE HELPERS
+    ========================= */
+
+    // Helper untuk cek role di Controller / Blade
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isPetugas()
+    {
+        return $this->role === 'petugas';
+    }
+
+    public function isSiswa()
+    {
+        return $this->role === 'siswa';
+    }
 }
