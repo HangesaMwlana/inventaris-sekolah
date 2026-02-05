@@ -2,19 +2,39 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Peminjaman extends Model
 {
-    // Mengunci nama tabel agar tidak berubah menjadi peminjamen
-    protected $table = 'peminjamans';
+    use HasFactory;
+
+    protected $table = 'peminjamans'; 
 
     protected $fillable = [
-        'user_id', 'barang_id', 'petugas_id', 'jumlah', 
-        'tanggal_pinjam', 'tanggal_kembali', 'status', 'deskripsi'
+        'user_id',
+        'barang_id',
+        'petugas_id',
+        'jumlah',
+        'tanggal_pinjam',
+        'tanggal_kembali',
+        'tanggal_jatuh_tempo',
+        'status',
+        'deskripsi' // Menggantikan tujuan_peminjaman
     ];
 
-    public function user() { return $this->belongsTo(User::class, 'user_id'); }
-    public function barang() { return $this->belongsTo(Barang::class); }
-    public function petugas() { return $this->belongsTo(User::class, 'petugas_id'); }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class);
+    }
+
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, 'petugas_id');
+    }
 }

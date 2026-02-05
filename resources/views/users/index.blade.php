@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Manajemen User </h2>
-            <button onclick="toggleModal('modal-tambah-user')" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+            <button onclick="toggleModal('modal-tambah-user')" class="bg-indigo-600 text-black px-4 py-2 rounded-md text-sm font-medium">
                 + Tambah User
             </button>
         </div>
@@ -40,7 +40,9 @@
                             </td>
                             <td class="border px-4 py-2 text-center">
                                 <div class="flex justify-center space-x-2">
-                                    <button onclick="openEditUserModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')" class="text-yellow-600 font-bold">Edit</button>
+                                    <button onclick="openEditUserModal('{{ $user->id }}', '{{ addslashes($user->name) }}', '{{ $user->email }}', '{{ $user->role }}')" class="text-yellow-600 font-bold hover:underline">
+                                        Edit
+                                    </button>
                                     @if($user->id !== Auth::id())
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Hapus user ini?')">
                                         @csrf @method('DELETE')
