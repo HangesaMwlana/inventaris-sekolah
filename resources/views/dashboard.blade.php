@@ -105,7 +105,7 @@
 
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script>
-                    //const chartData = @json($chartData);
+                    const chartData = @json($chartData);
 
                     const ctx = document.getElementById('loanChart').getContext('2d');
 
