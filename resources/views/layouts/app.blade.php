@@ -16,15 +16,15 @@
 
 <body class="font-inter bg-gray-100">
 
-<div class="flex min-h-screen">
+<div class="flex h-screen overflow-hidden">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 bg-blue-600 text-white flex flex-col">
+    <aside class="w-64 bg-blue-600 text-white flex flex-col h-screen">
         <div class="p-6 text-xl font-bold border-b border-blue-500">
             Inventori Barang
         </div>
 
-        <nav class="flex-1 p-4 space-y-2">
+        <nav class="flex-1 p-6 space-y-3">
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-500">
                 Dashboard
             </a>
