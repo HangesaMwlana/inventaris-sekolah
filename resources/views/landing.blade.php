@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="id">
 <head>
-<meta charset="utf-8">
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sistem Inventaris - SMKN 4 Padalarang</title>
+<title>Informasi Sistem Inventaris</title>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=poppins:300,400,500,600,700,800" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-
 <style>
 
 body{
+margin:0;
 font-family:'Poppins',sans-serif;
 min-height:100vh;
 overflow-x:hidden;
@@ -59,27 +59,33 @@ bottom:-160px;
 right:-160px;
 }
 
-/* nav */
-.top-nav{
+/* navbar */
+.navbar{
 position:fixed;
 top:20px;
 right:20px;
+
 display:flex;
+align-items:center;
 gap:12px;
-z-index:50;
+
 padding:10px 18px;
 border-radius:40px;
 
 background:rgba(0,0,0,.4);
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,.2);
+
+z-index:50;
 }
 
-.nav-btn{
-padding:10px 18px;
+.navbar a{
+padding:8px 18px;
 border-radius:20px;
+
 font-weight:600;
 font-size:14px;
+
 color:#fff;
 
 border:1px solid rgba(255,255,255,.3);
@@ -89,72 +95,59 @@ transition:.25s;
 text-decoration:none;
 }
 
-.nav-btn:hover{
+.navbar a:hover{
 background:#fff;
 color:#4f46e5;
 transform:translateY(-2px);
 }
 
-/* hero */
-.hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:120px 20px 80px;
+/* container */
+.container{
+max-width:1100px;
+margin:auto;
+padding:140px 20px 80px;
 position:relative;
-z-index:2;
+z-index:5;
 }
 
-.hero-card{
-max-width:900px;
-width:100%;
-
+/* main card */
+.card{
 background:rgba(0,0,0,.55);
 backdrop-filter:blur(25px);
 border:1px solid rgba(255,255,255,.2);
 
 border-radius:30px;
-
-padding:70px 50px;
-text-align:center;
+padding:60px 50px;
 
 box-shadow:0 30px 60px rgba(0,0,0,.4);
+
+text-align:center;
 color:white;
 }
 
 /* title */
 .hero-title{
-font-size:clamp(2.5rem,5vw,4rem);
+font-size:clamp(2rem,4vw,3rem);
 font-weight:800;
 color:white;
-margin-bottom:20px;
+margin-bottom:10px;
 text-shadow:0 4px 12px rgba(0,0,0,.6);
 }
 
 .hero-sub{
 color:#e5e7eb;
-font-size:1.2rem;
+font-size:1.1rem;
 max-width:600px;
 margin:auto;
 margin-bottom:40px;
 }
 
-/* logo */
-.logo{
-width:140px;
-margin:25px auto 40px;
-border-radius:20px;
-border:3px solid rgba(255,255,255,.3);
-box-shadow:0 20px 40px rgba(0,0,0,.3);
-}
-
 /* features */
 .features{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:22px;
-margin-top:40px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
 }
 
 .feature{
@@ -165,8 +158,7 @@ background:rgba(255,255,255,.12);
 border:1px solid rgba(255,255,255,.2);
 
 color:white;
-text-decoration:none;
-font-weight:600;
+text-align:center;
 
 transition:.3s;
 }
@@ -182,6 +174,20 @@ transform:translateY(-6px);
 background:rgba(255,255,255,.25);
 }
 
+/* about */
+.about{
+margin-top:40px;
+padding:40px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.2);
+
+color:#e5e7eb;
+line-height:1.7;
+}
+
 /* footer */
 .footer{
 text-align:center;
@@ -190,19 +196,21 @@ color:#e5e7eb;
 font-size:14px;
 }
 
-/* mobile */
+/* responsive */
 @media(max-width:768px){
-.hero-card{
-padding:50px 25px;
+
+.card{
+padding:40px 25px;
 }
 
-.top-nav{
-right:10px;
-top:10px;
+.container{
+padding-top:120px;
 }
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -210,69 +218,77 @@ top:10px;
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
 
-<div class="top-nav">
-
-@if (Route::has('login'))
-
-@auth
-<a href="{{ url('/dashboard') }}" class="nav-btn">
-<i class="fas fa-tachometer-alt"></i> Dashboard
+<div class="navbar">
+<a href="/">
+<i class="fas fa-arrow-left"></i>
+Kembali
 </a>
-@else
-
-<a href="{{ route('login') }}" class="nav-btn">
-<i class="fas fa-sign-in-alt"></i> Login
-</a>
-
-@if (Route::has('register'))
-<a href="{{ route('register') }}" class="nav-btn">
-<i class="fas fa-user-plus"></i> Register
-</a>
-@endif
-
-@endauth
-
-@endif
-
 </div>
 
-<section class="hero">
+<div class="container">
 
-<div class="hero-card">
+<div class="card">
 
 <h1 class="hero-title">
-Sistem Inventaris
+Informasi Sistem Inventaris
 </h1>
 
 <p class="hero-sub">
-Kelola inventaris sekolah dengan cepat dan efisien.
-<br>
-<strong>SMKN 4 Padalarang</strong>
+Sistem ini membantu sekolah mencatat, memantau, dan mengelola 
+barang inventaris seperti komputer, proyektor, dan peralatan lainnya.
 </p>
-
-<img src="{{ asset('images/logo.png') }}" class="logo">
 
 <div class="features">
 
-<a href="{{ route('landing') }}" class="feature">
-<i class="fas fa-info-circle"></i>
-Tentang Sistem
-</a>
+<div class="feature">
+<i class="fas fa-box"></i>
+<strong>Manajemen Data Barang</strong>
+<br>
+Menambahkan, mengubah, dan menghapus data barang inventaris sekolah.
+</div>
 
-<a href="{{ route('fitur') }}" class="feature">
-<i class="fas fa-cogs"></i>
-Informasi Fitur
-</a>
+<div class="feature">
+<i class="fas fa-hand-holding"></i>
+<strong>Pencatatan Peminjaman</strong>
+<br>
+Mencatat siapa yang meminjam barang dan kapan barang harus dikembalikan.
+</div>
+
+<div class="feature">
+<i class="fas fa-chart-bar"></i>
+<strong>Monitoring Stok</strong>
+<br>
+Melihat jumlah barang yang tersedia dan yang sedang dipinjam.
+</div>
+
+<div class="feature">
+<i class="fas fa-clock"></i>
+<strong>Riwayat Aktivitas</strong>
+<br>
+Melihat histori transaksi peminjaman barang secara lengkap.
+</div>
+
+</div>
+
+<div class="about">
+
+<h3>Tentang Aplikasi</h3>
+
+<p>
+Aplikasi inventaris sekolah dibuat untuk membantu petugas dalam mengelola
+data barang dengan lebih terstruktur. Semua data tersimpan secara digital
+sehingga memudahkan proses pencarian, peminjaman, dan pelaporan.
+</p>
 
 </div>
 
 </div>
 
-</section>
+</div>
 
-<footer class="footer">
+<div class="footer">
 © 2026 Sistem Inventaris SMKN 4 Padalarang
-</footer>
+</div>
 
 </body>
 </html>

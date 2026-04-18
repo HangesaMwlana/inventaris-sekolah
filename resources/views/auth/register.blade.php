@@ -1,70 +1,111 @@
 <x-guest-layout>
-    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
 
-        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-            Register Account
-        </h2>
+<style>
 
-        <form method="POST" action="{{ route('register') }}" class="space-y-4">
-            @csrf
+.input{
+width:100%;
+padding:11px 14px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.1);
+color:#fff;
+outline:none;
+}
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Name
-                </label>
-                <input type="text" name="name" value="{{ old('name') }}"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required>
-                @error('name')
-                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+.input::placeholder{
+color:#cbd5e1;
+}
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                </label>
-                <input type="email" name="email" value="{{ old('email') }}"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required>
-                @error('email')
-                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+.input:focus{
+border-color:#6366f1;
+background:rgba(255,255,255,.15);
+}
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Password
-                </label>
-                <input type="password" name="password"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required>
-                @error('password')
-                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+.label{
+font-size:14px;
+color:#e5e7eb;
+margin-bottom:4px;
+display:block;
+}
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Confirm Password
-                </label>
-                <input type="password" name="password_confirmation"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required>
-            </div>
+.btn-register{
+padding:10px 20px;
+border-radius:20px;
+border:none;
+background:#4f46e5;
+color:white;
+font-weight:600;
+}
 
-            <div class="flex justify-between items-center pt-2">
-                <a href="{{ route('login') }}"
-                    class="text-sm text-blue-600 hover:underline">
-                    Already registered?
-                </a>
+.btn-register:hover{
+background:#4338ca;
+}
 
-                <button type="submit"
-                    class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                    Register
-                </button>
-            </div>
+.link{
+font-size:13px;
+color:#c7d2fe;
+}
 
-        </form>
-    </div>
+.eye{
+position:absolute;
+right:10px;
+top:38px;
+cursor:pointer;
+color:#cbd5e1;
+}
+
+.error{
+font-size:12px;
+color:#fca5a5;
+}
+
+</style>
+
+<div class="w-full">
+
+<h2 class="text-2xl font-bold text-white mb-6 text-center">
+Register
+</h2>
+
+<form method="POST" action="{{ route('register') }}" class="space-y-5">
+@csrf
+
+<div>
+<label class="label">Name</label>
+<input type="text" name="name" class="input" required>
+</div>
+
+<div>
+<label class="label">Email</label>
+<input type="email" name="email" class="input" required>
+</div>
+
+<div class="relative">
+<label class="label">Password</label>
+<input id="password" type="password" name="password" class="input pr-10" required>
+<span onclick="togglePassword('password')" class="eye">👁</span>
+</div>
+
+<div class="relative">
+<label class="label">Confirm Password</label>
+<input id="password_confirmation" type="password" name="password_confirmation" class="input pr-10" required>
+<span onclick="togglePassword('password_confirmation')" class="eye">👁</span>
+</div>
+
+<div class="flex justify-between items-center pt-2">
+<a href="{{ route('login') }}" class="link">Sudah punya akun?</a>
+<button type="submit" class="btn-register">Register</button>
+</div>
+
+</form>
+
+</div>
+
+<script>
+function togglePassword(id){
+const field=document.getElementById(id);
+field.type=field.type==="password"?"text":"password";
+}
+</script>
+
 </x-guest-layout>

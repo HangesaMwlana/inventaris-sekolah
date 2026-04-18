@@ -11,9 +11,6 @@ use Exception;
 
 class BarangController extends Controller
 {
-    /**
-     * Menampilkan daftar barang dengan fitur search & filter kategori
-     */
     public function index(Request $request)
     {
         $query = Barang::query();
